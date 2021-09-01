@@ -3,11 +3,11 @@ import time
 import requests
 import telebot
 
-TOKEN = ''
-ADDRESS = 'https://poravkino.ru/api/schedule?date=2021-09-02'
+from config import TOKEN, ADMIN_ID
+
+ADDRESS = 'https://poravkino.ru/api/schedule?date=2021-09-03'
 
 bot = telebot.TeleBot(TOKEN)
-admin_id = 189551234
 
 
 def get_timetable() -> bool:
@@ -20,11 +20,10 @@ def get_timetable() -> bool:
 
 
 def send_admin(text) -> None:
-    bot.send_message(admin_id, text)
+    bot.send_message(ADMIN_ID, text)
 
 
 def main():
-
     while True:
         try:
             if get_timetable():
